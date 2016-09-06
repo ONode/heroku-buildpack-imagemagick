@@ -14,7 +14,7 @@ INSTALL_DIR="$VENDOR_DIR/imagemagick"
 mkdir -p $INSTALL_DIR
 IMAGE_MAGICK_LOCAL_FILE="ImageMagick.tar.gz"
 CACHE_FILE="$CACHE_DIR/$IMAGE_MAGICK_LOCAL_FILE"
-IMAGE_MAGICK_DIR="imagemagick/ImageMagick-7.0.3-0"
+IMAGE_MAGICK_DIR="ImageMagick-7.0.3-0"
 
 if [ ! -f $CACHE_FILE ]; then
   # install imagemagick
