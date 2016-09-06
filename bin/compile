@@ -12,17 +12,17 @@ VENDOR_DIR="$BUILD_DIR/vendor"
 mkdir -p $VENDOR_DIR
 INSTALL_DIR="$VENDOR_DIR/imagemagick"
 mkdir -p $INSTALL_DIR
-IMAGE_MAGICK_VERSION="${IMAGE_MAGICK_VERSION:-6.9.5-8}"
-##CACHE_FILE="$CACHE_DIR/imagemagick-$IMAGE_MAGICK_VERSION.tar.gz"
-CACHE_FILE="$CACHE_DIR/7.0.3-0.tar.gz"
-
+##https://github.com/ImageMagick/ImageMagick/archive/6.9.5-9.tar.gz
+#CACHE_FILE="$CACHE_DIR/7.0.3-0.tar.gz"
+VERSION_NAME="6.9.5-9"
+CACHE_FILE="$CACHE_DIR/$VERSION_NAME.tar.gz"
 if [ ! -f $CACHE_FILE ]; then
   # install imagemagick
-  IMAGE_MAGICK_FILE="7.0.3-0.tar.gz"
-  IMAGE_MAGICK_DIR="ImageMagick-7.0.3-0"
+  IMAGE_MAGICK_FILE="$VERSION_NAME.tar.gz"
+  IMAGE_MAGICK_DIR="ImageMagick-$VERSION_NAME"
   # SSL cert used on imagemagick not recognized by heroku.
   ##IMAGE_MAGICK_URL="http://www.imagemagick.org/download/releases/$IMAGE_MAGICK_FILE"
-  IMAGE_MAGICK_URL="https://github.com/ImageMagick/ImageMagick/archive/7.0.3-0.tar.gz"
+  IMAGE_MAGICK_URL="https://github.com/ImageMagick/ImageMagick/archive/$VERSION_NAME.tar.gz"
   echo "-----> Downloading ImageMagick from $IMAGE_MAGICK_URL"
   wget $IMAGE_MAGICK_URL -P $BUILD_DIR | indent
 
@@ -75,18 +75,3 @@ mkdir -p $(dirname $PROFILE_PATH)
 echo "export PATH=$ACTUAL_INSTALL_PATH/bin:\$PATH" >> $PROFILE_PATH
 echo "export LD_LIBRARY_PATH=$ACTUAL_INSTALL_PATH/lib:\$LD_LIBRARY_PATH" >> $PROFILE_PATH
 echo "export MAGICK_CONFIGURE_PATH=$ACTUAL_INSTALL_PATH" >> $PROFILE_PATH
-
-# DOWNLOAD_URL="http://www.imagemagick.org/download/ImageMagick-6.9.2-0.tar.gz"
-
-# echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
-
-# cd $BUILD_DIR
-# mkdir -p $VENDOR_DIR
-# cd $VENDOR_DIR
-# curl -L --silent $DOWNLOAD_URL | tar xz
-
-# echo "exporting PATH and LIBRARY_PATH" | indent
-# PROFILE_PATH="$BUILD_DIR/.profile.d/imagemagick.sh"
-# mkdir -p $(dirname $PROFILE_PATH)
-# echo 'export PATH="$PATH:$HOME/vendor/ImageMagick-6.9.2/bin"' >> $PROFILE_PATH
-# echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/vendor/ImageMagick-6.9.2/lib"' >> $PROFILE_PATH
